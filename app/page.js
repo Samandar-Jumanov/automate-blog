@@ -1,10 +1,26 @@
 "use client"
+import PostCard from "@/components/Posts";
+import { useState , useEffect } from "react";
 
-const Home = () =>{
-     return (
-         <h1> Hello world </h1>
-     )
-}
+const Home =  () => {
+   const [posts , setPosts] = useState([])
 
-export default Home 
+       useEffect(() =>{
+           const fetchAllPosts = async () =>{
+                 const response = await fetch("/api/fetchAllPosts")
+                 const data = await  response.json()
+                 setPosts(data)
+           };
 
+               fetchAllPosts()
+       } , []);
+
+
+       return ( 
+         <div>  
+              <PostCard data = {posts} />
+         </div>
+       )
+  };
+  
+  export default Home;
