@@ -25,7 +25,8 @@ model User {
   email         String?   @unique
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  image         String?
+  password      String 
   posts         Post[]
+  token         String 
   @@map(name: "users")
 }

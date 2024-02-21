@@ -3,7 +3,7 @@ import PostCard from "@/components/Posts";
 import { useState , useEffect } from "react";
 
 const Home =  () => {
-   const [posts , setPosts] = useState([])
+   const [posts , setPosts] = useState(null)
 
        useEffect(() =>{
            const fetchAllPosts = async () =>{
@@ -15,7 +15,9 @@ const Home =  () => {
                fetchAllPosts()
        } , []);
 
-
+if(!posts) {
+        return ( <h1> Loading ....</h1>)
+     }
        return ( 
          <div>  
               <PostCard data = {posts} />
